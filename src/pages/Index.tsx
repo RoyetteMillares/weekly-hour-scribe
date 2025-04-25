@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import TimesheetCard from '../components/TimeSheet/TimesheetCard';
-import WeeklySummary from '../components/TimeSheet/WeeklySummary';
+import TimesheetCard from '../components/Timesheet/TimesheetCard';
+import WeeklySummary from '../components/Timesheet/WeeklySummary';
 import { format } from 'date-fns';
 import { toast } from "@/components/ui/use-toast";
 

@@ -32,6 +32,9 @@ const TimesheetCard = ({
   onTimeIn,
   onTimeOut,
 }: TimesheetCardProps) => {
+  const regularHours = Math.min(hoursWorked, 8);
+  const overtimeHours = Math.max(0, hoursWorked - 8);
+
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -51,7 +54,17 @@ const TimesheetCard = ({
             <span className="font-medium">{formatTimeWithAmPm(timeOut)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Hours Worked:</span>
+            <span className="text-sm text-muted-foreground">Regular Hours:</span>
+            <span className="font-medium">{regularHours.toFixed(2)}</span>
+          </div>
+          {overtimeHours > 0 && (
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Overtime Hours:</span>
+              <span className="font-medium text-orange-600">{overtimeHours.toFixed(2)}</span>
+            </div>
+          )}
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-muted-foreground">Total Hours:</span>
             <span className="font-medium">{hoursWorked.toFixed(2)}</span>
           </div>
           <div className="flex gap-2 pt-2">

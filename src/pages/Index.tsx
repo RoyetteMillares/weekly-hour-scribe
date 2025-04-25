@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import TimesheetCard from '../components/Timesheet/TimesheetCard';
 import WeeklySummary from '../components/Timesheet/WeeklySummary';
@@ -62,17 +63,17 @@ const Index = () => {
     const now = new Date();
     setCurrentEntry(prev => ({
       ...prev,
-      timeIn: format(now, 'HH:mm'),
+      timeIn: format(now, 'HH:mm'), // Store in 24-hour format
     }));
     toast({
       title: "Clocked In",
-      description: `Time recorded: ${format(now, 'HH:mm')}`,
+      description: `Time recorded: ${format(now, 'h:mm a')}`, // Display in 12-hour format
     });
   };
 
   const handleTimeOut = () => {
     const now = new Date();
-    const timeOut = format(now, 'HH:mm');
+    const timeOut = format(now, 'HH:mm'); // Store in 24-hour format
     
     const timeInParts = currentEntry.timeIn!.split(':');
     const timeOutParts = timeOut.split(':');

@@ -14,6 +14,16 @@ interface TimesheetCardProps {
   onTimeOut: () => void;
 }
 
+const formatTimeWithAmPm = (time: string | null) => {
+  if (!time) return '--:--';
+  
+  const [hours, minutes] = time.split(':').map(Number);
+  const period = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = hours % 12 || 12;
+  
+  return `${formattedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+};
+
 const TimesheetCard = ({
   date,
   timeIn,
@@ -34,11 +44,11 @@ const TimesheetCard = ({
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <span className="text-sm text-muted-foreground">Time In:</span>
-            <span className="font-medium">{timeIn || '--:--'}</span>
+            <span className="font-medium">{formatTimeWithAmPm(timeIn)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-sm text-muted-foreground">Time Out:</span>
-            <span className="font-medium">{timeOut || '--:--'}</span>
+            <span className="font-medium">{formatTimeWithAmPm(timeOut)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-sm text-muted-foreground">Hours Worked:</span>
